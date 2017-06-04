@@ -1,5 +1,5 @@
 {
-  "name": "yajra/analytics",
+  "name": "yajra/analytics-module",
   "type": "laravel-module",
   "description": "YajraCMS Google Analytics Module",
   "authors": [
