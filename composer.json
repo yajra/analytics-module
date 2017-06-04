@@ -1,16 +1,18 @@
 {
-	"name": "yajracms/analytics",
-    "type": "laravel-module",
-	"description": "",
-	"authors": [
-		{
-			"name": "Arjay Angeles",
-			"email": "yajra@yajracms.com"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Modules\\Analytics\\": ""
-		}
-	}
+  "name": "yajra/cms-analytics",
+  "type": "laravel-module",
+  "description": "",
+  "authors": [
+    {
+      "name": "Arjay Angeles",
+      "email": "yajra@yajracms.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\Analytics\\": ""
+    }
+  }
 }
