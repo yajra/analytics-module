@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "spatie/laravel-analytics": "^3.0"
   },
   "extra": {
     "branch-alias": {
