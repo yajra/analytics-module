@@ -1,0 +1,16 @@
+{
+	"name": "yajracms/analytics",
+    "type": "laravel-module",
+	"description": "",
+	"authors": [
+		{
+			"name": "Arjay Angeles",
+			"email": "yajra@yajracms.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\Analytics\\": ""
+		}
+	}
+}
