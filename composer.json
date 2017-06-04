@@ -1,7 +1,7 @@
 {
-  "name": "yajra/cms-analytics",
+  "name": "yajra/analytics",
   "type": "laravel-module",
-  "description": "",
+  "description": "YajraCMS Google Analytics Module",
   "authors": [
     {
       "name": "Arjay Angeles",
