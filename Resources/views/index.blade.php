@@ -15,6 +15,13 @@
 @stop
 
 @push('styles')
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -31,7 +38,7 @@
             </div>
             <div class="box-body">
                 <div class="chart">
-                    <canvas id="graph" style="height: 249px; width: 555px;" height="308" width="1110"></canvas>
+                    <canvas id="graph" style="height: 249px; width: 100%;" height="249" width="1110"></canvas>
                 </div>
             </div>
         </div>
@@ -78,9 +85,10 @@
                 },
                 {
                     label: 'Visitors',
+                    backgroundColor: 'red',
                     fillColor: "rgba(100,220,220,0.7)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
+                    strokeColor: "rgba(100,220,220,1)",
+                    pointColor: "rgba(100,220,220,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
