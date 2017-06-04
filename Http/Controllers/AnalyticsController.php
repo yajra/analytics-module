@@ -28,8 +28,21 @@ class AnalyticsController extends Controller
         $pages = $this->analytics->fetchMostVisitedPages(Period::days(7));
         $browsers = $this->analytics->fetchTopBrowsers(Period::days(7));
         $referrers = $this->analytics->fetchTopReferrers(Period::days(7));
-        $views = $this->analytics->fetchVisitorsAndPageViews(Period::days(7));
-        $stats = $this->analytics->fetchTotalVisitorsAndPageViews(Period::days(7));
+        $views = $this->analytics->fetchVisitorsAndPageViews(Period::days(30));
+        $views = $views->map(function ($view) {
+            $view['date'] = $view['date']->format('F d');
+
+            return $view;
+        });
+
+        $stats = $this->analytics->fetchTotalVisitorsAndPageViews(Period::days(30));
+        $stats = $stats->map(function ($view) {
+            $view['date'] = $view['date']->format('F d');
+
+            return $view;
+        });
+
+
 
         return view('analytics::index', compact('pages', 'browsers', 'referrers', 'views', 'stats'));
     }

@@ -15,5 +15,7 @@ $router->group([
     'prefix'     => 'administrator',
     'as'         => 'administrator.',
 ], function () use ($router) {
-    $router->resource('analytics', AnalyticsController::class);
+    $router->resource('analytics', AnalyticsController::class, [
+        'only' => ['index'],
+    ]);
 });
