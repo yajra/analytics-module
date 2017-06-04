@@ -6,15 +6,8 @@
  */
 
 use Modules\Analytics\Http\Controllers\AnalyticsController;
-use Spatie\Analytics\Analytics;
-use Spatie\Analytics\Period;
 
 $router = app('router');
-
-// Front-end routes.
-$router->group(['middleware' => 'web'], function () use ($router) {
-    $router->resource('analytics', AnalyticsController::class);
-});
 
 // Back-end routes.
 $router->group([
@@ -22,7 +15,5 @@ $router->group([
     'prefix'     => 'administrator',
     'as'         => 'administrator.',
 ], function () use ($router) {
-    $router->get('analytics', function (Analytics $analytics) {
-        return $analytics->fetchVisitorsAndPageViews(Period::days(7));
-    })->name('analytics.index');
+    $router->resource('analytics', AnalyticsController::class);
 });

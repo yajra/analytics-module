@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin::layouts.master')
 
 @section('body', '')
 
@@ -7,28 +7,46 @@
 @section('author', config('analytics.author'))
 
 @section('title')
-{{config('analytics.name')}} | @parent
+    {{config('analytics.name')}} | @parent
 @stop
 
 @section('page-title')
-{{config('analytics.name')}}
+    Google Analytics
 @stop
 
 @push('styles')
 @endpush
 
 @section('content')
+    <section>
+        {{dump($stats)}}
+        {{dump($views)}}
+    </section>
 
-	<h1>Hello World</h1>
+    <section id="analytics">
+        <div class="row">
+            <div class="col-md-6">
+                @include('analytics::widgets.most-visited')
+            </div>
+            <div class="col-md-6">
+                @include('analytics::widgets.browsers')
+            </div>
+        </div>
 
-	<p>
-		This view is loaded from module: {!! config('analytics.name') !!}
-	</p>
-
+        <div class="row">
+            <div class="col-md-6">
+                @include('analytics::widgets.referrers')
+            </div>
+        </div>
+    </section>
 @stop
 
-@push('js-plugins')
-@endpush
-
 @push('scripts')
+<script>
+    $(function () {
+        $('#analytics .table').DataTable({
+            lengthChange: false,
+        });
+    });
+</script>
 @endpush
