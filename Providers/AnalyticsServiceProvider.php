@@ -25,7 +25,12 @@ class AnalyticsServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerAdminMenu();
+
+        /** @var \Nwidart\Modules\Module $module */
+        $module = app('modules')->findByAlias('analytics');
+        if ($module && $module->enabled()) {
+            $this->registerAdminMenu();
+        }
     }
 
     /**
