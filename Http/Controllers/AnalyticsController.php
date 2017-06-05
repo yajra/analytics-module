@@ -25,15 +25,9 @@ class AnalyticsController extends Controller
 
     public function index()
     {
-        $pages = $this->analytics->fetchMostVisitedPages(Period::days(7));
-        $browsers = $this->analytics->fetchTopBrowsers(Period::days(7));
+        $pages     = $this->analytics->fetchMostVisitedPages(Period::days(7));
+        $browsers  = $this->analytics->fetchTopBrowsers(Period::days(7));
         $referrers = $this->analytics->fetchTopReferrers(Period::days(7));
-        $views = $this->analytics->fetchVisitorsAndPageViews(Period::days(14));
-        $views = $views->map(function ($view) {
-            $view['date'] = $view['date']->format('F d');
-
-            return $view;
-        });
 
         $stats = $this->analytics->fetchTotalVisitorsAndPageViews(Period::days(14));
         $stats = $stats->map(function ($view) {
@@ -42,8 +36,31 @@ class AnalyticsController extends Controller
             return $view;
         });
 
+        $countries = $this->fetchTotalCountrySessions(Period::days(30));
 
+        return view('analytics::index', compact('pages', 'browsers', 'referrers', 'views', 'stats', 'countries'));
+    }
 
-        return view('analytics::index', compact('pages', 'browsers', 'referrers', 'views', 'stats'));
+    /**
+     * @param \Spatie\Analytics\Period $period
+     * @return \Illuminate\Support\Collection
+     */
+    private function fetchTotalCountrySessions(Period $period)
+    {
+        $response = $this->analytics->performQuery(
+            $period,
+            'ga:sessions',
+            [
+                'dimensions' => 'ga:country',
+                'sort'       => '-ga:sessions',
+            ]
+        );
+
+        return collect($response['rows'] ?? [])->map(function (array $dateRow) {
+            return [
+                'country'  => $dateRow[0],
+                'sessions' => (int) $dateRow[1],
+            ];
+        });
     }
 }
